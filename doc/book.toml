@@ -23,6 +23,7 @@ command = "mdbook-toc"
 additional-js = [
     "mermaid.min.js", 
     "mermaid-init.js", 
+    "mermaid-animate.js"
 ]
 default-theme = "rust"
 preferred-dark-theme = "navy"

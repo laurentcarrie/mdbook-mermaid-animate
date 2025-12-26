@@ -40,18 +40,6 @@ classDef world stroke:#blue,stroke-width:1px,fill:orange,color:red;
 
 ---
 
-# blah
-
-<details close>
-<summary><i>make run_1</i></summary>
-
-```sh
-{{#include ../../Makefile:run_1}}
-```
-</details>
-
----
-
 # bar 2
 
 <div display="none">
@@ -63,6 +51,17 @@ classDef world stroke:#blue,stroke-width:1px,fill:orange,color:red;
 
 ---
 title: hello world
+
+animate:
+    nb_frames: 4
+    frames:
+        - 
+            - X
+            - Y
+        -
+            - X
+            - Z
+
 ---
 
 flowchart

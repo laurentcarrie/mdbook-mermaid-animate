@@ -74,7 +74,7 @@ pub fn one_diagram(
                 dbg!("found frame match: {:?}", &cap);
                 let body = &cap["body"];
                 dbg!("frame body: {}", &body);
-                ret.push_str(body.clone());
+                ret.push_str(body);
             }
         }
     }
