@@ -21,6 +21,8 @@ jobs:
         run: |
           cargo install mdbook mdbook-mermaid mdbook-toc
           mdbook-mermaid install doc
+          cargo install --path src
+          mdbook-mermaid-animate install doc
       - name: Build Book
         run: |
           cd doc
