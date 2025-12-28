@@ -1,0 +1,49 @@
+
+// id is {{ id }}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+
+// const delay = ms => new Promise(res => setTimeout(res, ms));
+
+// const number_of_frames={{number_of_frames}} ;
+
+$(document).ready(function() {
+    $("#start-{{~id~}}").click(function(){
+        console.log("click {{id}}") ;
+        mermaid_animate_display_frame("{{id}}",1,{{number_of_frames}}) ;
+   });
+
+    $("#loop-{{~id~}}").click(function(){
+        var $input =  $(this) ;        
+        $input.prop("started", true) ;
+        mermaid_animate_loop("{{id}}",{{number_of_frames}}, {{delay}}) ;
+   });
+
+    $("#stop-{{~id~}}").click(function(){
+        var $input =  $("#loop-{{~id~}}") ;
+        $input.prop("started", false) ;   });
+
+
+   $("#forward-{{~id~}}").click(function(){
+        mermaid_animate_advance("{{id}}", {{number_of_frames}}) ;
+   });
+
+   $("#backward-{{~id~}}").click(function(){
+        console.log("click {{id}}") ;
+        mermaid_animate_stepback("{{id}}", {{number_of_frames}}) ;
+   });
+
+
+    $("#details-{{~id~}}").on(
+  "click",
+  function() {
+        console.log("click details {{id}}") ;
+        mermaid_animate_open_details("{{id}}",{{number_of_frames}}) ;
+  });
+
+
+
+}) ;
+
+</script> 

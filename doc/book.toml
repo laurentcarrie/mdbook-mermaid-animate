@@ -1,0 +1,41 @@
+[book]
+authors = ["Laurent Carrie"]
+language = "en"
+src = "src"
+title = "yamake"
+
+[preprocessor]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+
+[build]
+create-missing = true
+
+
+[preprocessor.toc]
+command = "mdbook-toc"
+
+[output.html]
+#mathjax-support = true
+#additional-css = ["dtmo.css", "mermaid.css"]
+additional-js = [
+    "mermaid.min.js", 
+    "mermaid-init.js", 
+    "mermaid-animate.js"
+]
+default-theme = "rust"
+preferred-dark-theme = "navy"
+additional-css = ["theme/css/custom.css"]
+
+#[output.html.redirect]
+
+#[preprocessor.alerts]
+
+#[preprocessor.pikchr]
+
+#[preprocessor.emojicodes]
+
+[preprocessor.mermaid-animate]
+after=["mermaid"]
