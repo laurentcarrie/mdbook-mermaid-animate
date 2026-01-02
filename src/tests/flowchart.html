@@ -1,0 +1,32 @@
+<pre class="mermaid">
+---
+title: Animated Diagram
+animate:
+  delay: 1000
+  tags: [ A, B]
+  variants:
+    - name: "red"
+      value: 'class {tag} red ;'
+    - name: "blue"
+      value: 'class {tag} blue ;'
+    - name: "white"
+      value: 'class {tag} white ;'
+  frames:
+    - title: |
+        <p style="background-color:aquamarine">Frame 1</p>
+      toggles: ["A@red","B@blue"]
+    - title: |
+        <p style="background-color:coral">Frame 2</p>
+      toggles: ["B@white"]      
+---
+graph TD;
+    A-->B;  
+    B-->E;
+    C-->E;
+    D-->E;
+
+    classDef red fill:#f96,stroke:#333,stroke-width:2px;
+    classDef blue fill:#bbf,stroke:#333,stroke-width:2px;
+    %% animated-mermaid-tag A
+    %% animated-mermaid-tag B
+</pre>

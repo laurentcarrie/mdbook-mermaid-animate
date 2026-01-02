@@ -1,5 +1,5 @@
 tmp/
-src/target
+target
 doc/book
 doc/mermaid-animate.js
 

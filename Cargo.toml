@@ -1,12 +1,12 @@
 [package]
 name = "mdbook-mermaid-animate"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Laurent Carrié <laurent.carrie@gmail.com>"]
 description = "mdbook preprocessor to add mermaid animation support, before mdbook-mermaid preprocessor"
 license = "MPL-2.0"
-homepage = "https://github.com/laurentcarrie/animated-mermaid"
-repository = "https://github.com/laurentcarrie/animated-mermaid"
-edition = "2018"
+homepage = "https://github.com/laurentcarrie/mdbook-mermaid-animate"
+repository = "https://github.com/laurentcarrie/mdbook-mermaid-animate"
+edition = "2024"
 
 [dependencies]
 mdbook-preprocessor = "0.5.0"
@@ -17,7 +17,6 @@ clap = { version = "4.0.29", features = ["cargo"] }
 serde_json = "1.0.57"
 toml_edit = { version = "0.15.0", default-features = false }
 anyhow = "1.0.100"
-#mdbook = "0.5.2"
 regex = "1.12.2"
 serde = { version = "1.0.228", features = ["derive"] }
 handlebars = "6.3.2"

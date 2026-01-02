@@ -1,0 +1,42 @@
+delay: 500
+tags: ['2002','2004','2005','2006','2007','2008','2010']
+
+variants:
+  - name: t-2002
+    value: '2002 : LinkedIn '
+  - name: t-2004
+    value: '2004 : Facebook '
+  - name: t-2005
+    value: '2005 : YouTube '
+  - name: t-2006
+    value: '2006 : Twitter '
+  - name: t-2007
+    value: '2007 : Tumblr '
+  - name: t-2008
+    value: '2008 : Instagram '  
+  - name: t-2010
+    value: '2010 : Pinterest '
+
+frames:
+  - title: |
+      <h1 style="background-color:LightCyan">
+      2002
+      </h1>
+    toggles:
+      - 2002@t-2002 
+
+  - title: |
+      <h1 style="background-color:LightCyan">
+      2004
+      </h1>
+    toggles:
+      - 2004@t-2004 
+
+  - title: |
+      <h1 style="background-color:LightCyan">
+      2005
+      </h1>
+    toggles:
+      - 2005@t-2005 
+
+

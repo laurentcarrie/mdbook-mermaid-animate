@@ -19,7 +19,7 @@ test: build
 
 build: ## build 
 	@printf "\n$(White)$(On_Blue)build$(Color_Off)\n"
-	(  cargo fmt && 	cargo build  )
+	(  cargo fmt && cargo build  )
 	@printf "finished building\n"
 
 install: build ## install 
@@ -33,6 +33,11 @@ clean:
 
 
 doc-serve: ## run mdbook and serve
-	rm -f doc/mermaid-animate.js
-	( cd doc && mdbook-mermaid-animate install && mdbook serve )
-
+	rm -f doc/*.js
+	mdbook-mermaid install doc
+	mdbook-mermaid-animate install doc
+	curl https://unpkg.com/mermaid@11.12.2/dist/mermaid.min.js -o doc/mermaid.min.js --insecure
+	( cd doc &&  PATH=../target/debug:"${PATH}"  mdbook serve )
+	
+test: ## run cargo test
+	cargo fmt && cargo test 

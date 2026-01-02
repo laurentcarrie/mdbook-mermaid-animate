@@ -126,32 +126,6 @@ impl HelperDef for RemoveFileExtension {
 }
 
 #[derive(Clone, Copy)]
-struct PadHelper;
-impl HelperDef for PadHelper {
-    fn call<'reg: 'rc, 'rc>(
-        &self,
-        h: &Helper,
-        _: &Handlebars,
-        _: &Context,
-        _rc: &mut RenderContext,
-        out: &mut dyn Output,
-    ) -> HelperResult {
-        let p = h.param(0).unwrap().value().as_array().unwrap().len();
-        let n = h.param(1).unwrap().value().as_i64().unwrap() as usize;
-        let pad = h.param(2).unwrap().value().as_str().unwrap();
-        out.write(format!("% padhelper : {p} ; {n} ; {pad}").as_str())?;
-        out.write(
-            (0..(std::cmp::max(0, n - p)))
-                .map(|_| pad)
-                .collect::<Vec<_>>()
-                .join("")
-                .as_str(),
-        )?;
-        Ok(())
-    }
-}
-
-#[derive(Clone, Copy)]
 struct MulticolsHelper;
 impl HelperDef for MulticolsHelper {
     fn call<'reg: 'rc, 'rc>(
@@ -218,48 +192,6 @@ impl HelperDef for LenHelper {
     }
 }
 
-#[derive(Clone, Copy)]
-struct RowStartBarTimeHelper;
-impl HelperDef for RowStartBarTimeHelper {
-    fn call<'reg: 'rc, 'rc>(
-        &self,
-        h: &Helper,
-        _: &Handlebars,
-        _: &Context,
-        _rc: &mut RenderContext,
-        out: &mut dyn Output,
-    ) -> HelperResult {
-        let nbar = i64_of_value(h.param(0).unwrap().value());
-        let tempo = i64_of_value(h.param(1).unwrap().value());
-        //@ todo : we assume that a bar is always 4 times
-        let total_seconds = (nbar - 1) as f64 * 4_f64 * 60_f64 / tempo as f64;
-        let minutes = (total_seconds / 60_f64).floor() as u64;
-        let seconds = total_seconds as u64 - minutes * 60;
-        let _ = write!(out, "{minutes}'{seconds:0>2}\"");
-
-        Ok(())
-    }
-}
-
-#[derive(Clone, Copy)]
-struct TexSanitizeHelper;
-impl HelperDef for TexSanitizeHelper {
-    fn call<'reg: 'rc, 'rc>(
-        &self,
-        h: &Helper,
-        _: &Handlebars,
-        _: &Context,
-        _rc: &mut RenderContext,
-        out: &mut dyn Output,
-    ) -> HelperResult {
-        let s = h.param(0).unwrap().value().as_str().unwrap();
-        // let s = s.replace("_", "\\_");
-        let s = s.replace("_", " ");
-        out.write(&s)?;
-        Ok(())
-    }
-}
-
 pub fn get_handlebar() -> Result<Handlebars<'static>, Error> {
     let mut reg = Handlebars::new();
     reg.register_helper("simple-helper", Box::new(SimpleHelper));
@@ -270,12 +202,9 @@ pub fn get_handlebar() -> Result<Handlebars<'static>, Error> {
         "remove-file-extension-helper",
         Box::new(RemoveFileExtension),
     );
-    reg.register_helper("pad-helper", Box::new(PadHelper));
     reg.register_helper("len-helper", Box::new(LenHelper));
-    reg.register_helper("helper_tex_sanitize", Box::new(TexSanitizeHelper));
     reg.register_helper("multicols_helper", Box::new(MulticolsHelper));
     reg.register_helper("greater-than-helper", Box::new(GreaterThanHelper));
-    reg.register_helper("row_start_bar_time", Box::new(RowStartBarTimeHelper));
 
     Ok(reg)
 }

@@ -2,7 +2,7 @@
 authors = ["Laurent Carrie"]
 language = "en"
 src = "src"
-title = "yamake"
+title = "mermaid-animate"
 
 [preprocessor]
 

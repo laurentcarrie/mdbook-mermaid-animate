@@ -1,3 +1,10 @@
-<!-- - [foo](./foo.md)  -->
-- [bar](./bar.md)
-- [pie](./pie.md)
+- [demos](./demo.md)
+    - [mermaid version](./mermaid-version.md)
+    - [flowchart](./flowchart.md)
+    - [pie](./pie.md)
+    - [git](./git.md)
+    - [xy](./xy.md)
+    - [timeline](./timeline.md)
+- [installation](./install.md)
+- [usage](./usage.md)
+    - [yml file](./yml.md)

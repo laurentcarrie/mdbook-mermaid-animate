@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - work
 
 jobs:
   deploy:
@@ -17,12 +18,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install latest mdbook
+      - name: Install latest mdbook and processors
         run: |
           cargo install mdbook mdbook-mermaid mdbook-toc
           mdbook-mermaid install doc
+      - name: build and install mdbook-mermaid-animate
+        run: |
           cargo install --path .
           mdbook-mermaid-animate install doc
+
       - name: Build Book
         run: |
           cd doc

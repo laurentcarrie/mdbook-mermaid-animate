@@ -1,7 +1,7 @@
-use clap::{crate_version, Arg, ArgMatches, Command};
-use mdbook_preprocessor::errors::Error;
+use clap::{Arg, ArgMatches, Command, crate_version};
 use mdbook_preprocessor::Preprocessor;
-use toml_edit::{value, Array, Document, Item, Table, Value};
+use mdbook_preprocessor::errors::Error;
+use toml_edit::{Array, Document, Item, Table, Value, value};
 
 use std::{
     fs::{self, File},
@@ -45,7 +45,7 @@ fn main() {
     } else if let Some(sub_args) = matches.subcommand_matches("install") {
         handle_install(sub_args);
     } else if let Err(e) = handle_preprocessing() {
-        eprintln!("{}", e);
+        eprintln!("{e}");
         process::exit(1);
     }
 }
@@ -140,15 +140,28 @@ fn handle_install(sub_args: &ArgMatches) -> ! {
         }
     }
 
-    log::info!("Files & configuration for mdbook-mermaid are installed. You can start using it in your book.");
+    log::info!(
+        "Files & configuration for mdbook-mermaid are installed. You can start using it in your book."
+    );
     let codeblock = r#"```mermaid
+---
+title: some title
+animate-yml-file: some-file.yml
+---
+
 graph TD;
     A-->B;
     A-->C;
     B-->D;
     C-->D;
+
+    %% mermaid-animate-tag a,b
+     A-->E;
+     A-->F;
+    %% mermaid-animate-tag c,d
+
 ```"#;
-    log::info!("Add a code block like:\n{}", codeblock);
+    log::info!("Add a code block like:\n{codeblock}",);
 
     process::exit(0);
 }
@@ -160,11 +173,11 @@ fn add_additional_files(doc: &mut Document) -> bool {
     let file = "mermaid.min.js";
     let additional_js = additional(doc, "js");
     if has_file(&additional_js, file) {
-        log::debug!("'{}' already in 'additional-js'. Skipping", file)
+        log::debug!("'{file}' already in 'additional-js'. Skipping")
     } else {
         printed = true;
         log::info!("Adding additional files to configuration");
-        log::debug!("Adding '{}' to 'additional-js'", file);
+        log::debug!("Adding '{file}' to 'additional-js'",);
         insert_additional(doc, "js", file);
         changed = true;
     }
@@ -172,12 +185,12 @@ fn add_additional_files(doc: &mut Document) -> bool {
     let file = "mermaid-init.js";
     let additional_js = additional(doc, "js");
     if has_file(&additional_js, file) {
-        log::debug!("'{}' already in 'additional-js'. Skipping", file)
+        log::debug!("'{file}' already in 'additional-js'. Skipping")
     } else {
         if !printed {
             log::info!("Adding additional files to configuration");
         }
-        log::debug!("Adding '{}' to 'additional-js'", file);
+        log::debug!("Adding '{file}' to 'additional-js'",);
         insert_additional(doc, "js", file);
         changed = true;
     }
@@ -192,7 +205,7 @@ fn additional<'a>(doc: &'a mut Document, additional_type: &str) -> Option<&'a mu
     let item = item.as_table_mut()?.get_mut("html")?;
     let item = item
         .as_table_mut()?
-        .get_mut(&format!("additional-{}", additional_type))?;
+        .get_mut(&format!("additional-{additional_type}",))?;
     item.as_array_mut()
 }
 
@@ -241,7 +254,7 @@ fn insert_additional(doc: &mut Document, additional_type: &str, file: &str) {
     let array = item
         .as_table_mut()
         .unwrap()
-        .entry(&format!("additional-{}", additional_type))
+        .entry(&format!("additional-{additional_type}",))
         .or_insert(empty_array);
     array
         .as_value_mut()

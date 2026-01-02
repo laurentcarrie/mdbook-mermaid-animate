@@ -1,0 +1,155 @@
+  delay: 3000
+  # ANCHOR: tags
+  tags: [ m1,m2,m3,m4,m5,m6,d1,d2,d3,em1m2, em2m3, em3m4, em4m5, em5m6,em6m7,em3d1,ed1d2,ed2d3,em3d1,ed3m6]
+  # ANCHOR_END: tags
+
+  # ANCHOR: variants
+  variants:
+   - name: animate
+     value: 'class {tag} animate; '
+   - name: hidden
+     value: 'class {tag} class_no_edge;'
+   - name: active
+     value: 'class {tag} class_edge;'
+   - name: nactive
+     value: 'class {tag} class_on;'
+   - name: nhidden
+     value: 'class {tag} class_off;'
+   - name: nfrom
+     value: 'class {tag} class_from;'
+   - name: nto
+     value: 'class {tag} class_to;'
+  # ANCHOR_END: variants
+
+  frames:
+    - title: |
+        <h1 style="background-color:Lavender">
+        initial
+        </h1>
+      # initial state, everything hidden
+      toggles:
+        - m1@nhidden
+        - m2@nhidden
+        - m3@nhidden
+        - m4@nhidden
+        - m5@nhidden
+        - m6@nhidden
+        - d1@nhidden
+        - d2@nhidden
+        - d3@nhidden
+        - em1m2@hidden
+        - em2m3@hidden
+        - em3m4@hidden
+        - em4m5@hidden 
+        - em5m6@hidden 
+        - em6m7@hidden 
+        - em4m5@hidden 
+        - em3d1@hidden
+        - ed1d2@hidden
+        - ed2d3@hidden
+        - ed3m6@hidden
+
+
+    - title: |
+        <h1 style="background-color:Lavender">
+        add commit in main
+        </h1>
+      toggles: 
+        - em1m2@animate
+        - m1@nfrom
+        - m2@nto
+
+    - title: |
+        <h1 style="background-color:Lavender">
+        add another commit in main
+        </h1>
+      toggles: 
+        - em1m2@active
+        - em2m3@animate 
+        - m1@active
+        - m2@nfrom
+        - m3@nto
+
+  # ANCHOR: frames
+
+    - title: |
+        <h1 style="background-color:Lavender">
+        checkout develop branch
+        </h1>
+      toggles: 
+        - em2m3@active
+        - em3d1@animate 
+        - m2@active
+        - m3@nfrom
+        - d1@nto        
+
+    - title: |
+        <h1 style="background-color:Lavender">
+        add commit in develop
+        </h1>
+      toggles: 
+        - em3d1@active
+        - ed1d2@animate 
+        - m3@active
+        - d1@nfrom
+        - d2@nto            
+
+# ANCHOR_END: frames
+
+
+    - title: |
+        <h1 style="background-color:Lavender">
+        add another commit in develop
+        </h1>
+      toggles: 
+        - ed1d2@active
+        - ed2d3@animate 
+        - d1@active
+        - d2@nfrom
+        - d3@nto       
+
+    - title: |
+        <h1 style="background-color:Coral">
+        in the mean time ....
+         other devs add new commits to main branch
+        </h1>
+      toggles: 
+        - ed2d3@active
+        - em3m4@animate 
+        - d2@active
+        - d3@active
+        - m3@nfrom
+        - m4@nto       
+
+    - title: |
+        <h1 style="background-color:Coral">
+        in the mean time ....
+         other devs add new commits to main branch
+        </h1>
+      toggles: 
+        - em3m4@active
+        - em4m5@animate 
+        - m3@active
+        - m4@nfrom
+        - m5@nto      
+
+    - title: |
+       <h1 style="background-color:Lavender">
+       merge develop to base
+       </h1>
+       <p style="background-color:Pink">
+        problem : m6 is not d3. The tested version d3 is different. It may be wrong, and if develop branch is deleted, d3 is lost forever
+        </p>
+        <p style="background-color:SpringGreen">
+        solution : linear commit and rebase
+        </p>
+      toggles:
+        - em4m5@active
+        - em5m6@animate
+        - ed3m6@animate
+        - m4@active
+        - m5@nfrom
+        - d3@nfrom
+        - m6@nto
+
+
