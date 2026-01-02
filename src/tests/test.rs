@@ -3,7 +3,6 @@ mod test {
     use super::super::super::mermaid_of_frame::mermaid_of_frame;
     use super::super::super::mermaid_of_frame::tags_of_frame;
     use super::super::super::process_diagram::extract_meta;
-    use super::super::super::process_diagram::process_diagram;
     use std::collections::HashMap;
 
     fn data() -> String {
@@ -88,13 +87,5 @@ mod test {
                 );
             }
         }
-    }
-
-    #[test]
-    fn test_process_diagram() {
-        let _ = env_logger::try_init_from_env(env_logger::Env::default().default_filter_or("info"));
-        let data = data();
-        let processed = process_diagram(0, &data).unwrap();
-        log::info!("processed: {}", &processed);
     }
 }

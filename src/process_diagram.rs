@@ -11,13 +11,11 @@ use mdbook_preprocessor::PreprocessorContext;
 use regex::Regex;
 
 pub fn trim_html(s: String) -> String {
-    let s = s
-        .trim()
+    s.trim()
         .to_string()
         .replace("&gt;", ">")
         .replace("&lt;", "<")
-        .replace("&quot;", "\"");
-    s
+        .replace("&quot;", "\"")
 }
 
 pub(crate) fn extract_meta(diagram: &str) -> anyhow::Result<(DiagramMeta, String)> {

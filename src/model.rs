@@ -7,12 +7,6 @@ pub(crate) struct TagVariant {
 }
 
 #[derive(Serialize, Deserialize, PartialEq, Debug, Hash, Clone)]
-pub(crate) struct Tag {
-    pub(crate) tag: String,
-    pub(crate) variants: Vec<TagVariant>,
-}
-
-#[derive(Serialize, Deserialize, PartialEq, Debug, Hash, Clone)]
 pub(crate) struct Frame {
     pub(crate) title: String,
     pub(crate) toggles: Vec<String>,
