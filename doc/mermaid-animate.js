@@ -111,7 +111,7 @@ function mermaid_animate_stepback(id, number_of_frames) {
 };
 
 
-function mermaid_animate_loop(id, number_of_frames, delay) {
+function mermaid_animate_loop(id, number_of_frames ) {
     // console.log("animloop " + id);
     // let frame = 1;
     // var today = new Date();
@@ -133,8 +133,9 @@ function mermaid_animate_loop(id, number_of_frames, delay) {
         console.log("stop animation loop " + id);
         return;
     }
+    delay = $("#delay-" + id).val();
     console.log("delay=" + delay + " frame=" + frame);
-    setTimeout(function () { mermaid_animate_loop(id, number_of_frames, delay) }, delay);
+    setTimeout(function () { mermaid_animate_loop(id, number_of_frames ) }, delay);
 };
 
 

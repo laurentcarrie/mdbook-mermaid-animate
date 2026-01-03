@@ -10,6 +10,11 @@
 
 ## solution : rebase
 
+- if you activate linear commit in github, the previous scenario will not be possible : you need to rebase before pushing a MR
+- if you rebase, there is no need for a merge, because the new head of main will be exactly the head of develop
+- d3 == m6 : the new head of main will be fully tested
+- this version will always be available in the main branch history
+
 
 ```mermaid
 ---

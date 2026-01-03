@@ -103,6 +103,7 @@ pub fn process_diagram(ctx: &PreprocessorContext, htmldiv: &str) -> anyhow::Resu
         delay: animate_data.delay,
     };
     let rendered_script = h.render("t1", &x)?;
+    let delay = animate_data.delay;
 
     let mermaid_class = "mermaid";
 
@@ -115,6 +116,8 @@ pub fn process_diagram(ctx: &PreprocessorContext, htmldiv: &str) -> anyhow::Resu
 <button id="forward-{id}" class="mermaid-animate">Next</button>
 <button id="loop-{id}" class="mermaid-animate">Loop</button>
 <button id="stop-{id}" class="mermaid-animate">Stop</button>
+<input type="number" id="delay-{id}" value="{delay}" step="100" class="mermaid-animate"> ms
+
 </div>
 "###
     );
