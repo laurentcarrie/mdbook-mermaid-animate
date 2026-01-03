@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-mermaid-animate"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Laurent Carrié <laurent.carrie@gmail.com>"]
 description = "mdbook preprocessor to add mermaid animation support, before mdbook-mermaid preprocessor"
 license = "MPL-2.0"
