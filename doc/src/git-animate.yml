@@ -1,7 +1,7 @@
   delay: 1000
   auto-start: true
-  min-frame: 11
-  max-frame: 11
+  #min-frame: 1
+  #max-frame: 11
   # ANCHOR: tags
   tags: [ m1,m2,m3,m4,m5,m6,mr6,d1,d2,d3,dr1,dr2,dr3,em1m2, em2m3, em3m4, em4m5, em5m6,em6m7,em3d1,em5d1,ed1d2,ed2d3,ed3m6,em5dr1,edr3mr6 ,
   ed3dr1,edr1dr2,edr2dr3,edr3m6,em5mr6   ]
